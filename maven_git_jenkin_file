@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    environment{
+        PATH = "/opt/maven/bin/:$PATH"
+    }
+
+    stages {
+        stage('Git') {
+            steps {
+                git 'https://github.com/punna62/webapp.git'
+            }
+        }
+        stage('Maven Build') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
+    }
+}
